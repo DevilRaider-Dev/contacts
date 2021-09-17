@@ -6,6 +6,8 @@ class ContactList extends React.Component {
     state = {
         //get the first five elements from array
         data: data.slice(0, 5),
+        toggleName: true,
+        togglePop: true
     }
     handleAddRandomContact = () => {
         //get random contact from array
@@ -27,24 +29,28 @@ class ContactList extends React.Component {
         let tmp = [...this.state.data]
         tmp.sort((a, b) => (a.name < b.name) ? -1 : (b.name < a.name) ? 1 : 0)
         this.setState({ data: tmp });
+        this.setState({ toggleName: !this.state.toggleName });
     }
     handleSortContactByNameDesc = () => {
         //store array in new variable and sort it by name desc
         let tmp = [...this.state.data]
         tmp.sort((a, b) => (a.name < b.name) ? 1 : (b.name < a.name) ? -1 : 0)
         this.setState({ data: tmp });
+        this.setState({ toggleName: !this.state.toggleName });
     }
     handleSortContactByPop = () => {
         //store array in new variable and sort it by name asc
         let tmp = [...this.state.data]
         tmp.sort((a, b) => (a.popularity < b.popularity) ? -1 : (b.popularity < a.popularity) ? 1 : 0)
         this.setState({ data: tmp });
+        this.setState({ togglePop: !this.state.togglePop });
     }
     handleSortContactByPopDesc = () => {
         //store array in new variable and sort it by name desc
         let tmp = [...this.state.data]
         tmp.sort((a, b) => (a.popularity < b.popularity) ? 1 : (b.popularity < a.popularity) ? -1 : 0)
         this.setState({ data: tmp });
+        this.setState({ togglePop: !this.state.togglePop });
     }
     handleRemoveContact = (name) => {
         let tmp = [...this.state.data]
@@ -55,10 +61,16 @@ class ContactList extends React.Component {
         return <div>
             <div id="buttonBar">
                 <button onClick={this.handleAddRandomContact}>Add Random Contact</button>
-                <button onClick={this.handleSortContactByName}>Sort by Name Asc</button>
-                <button onClick={this.handleSortContactByNameDesc}>Sort by Name Desc</button>
-                <button onClick={this.handleSortContactByPop}>Sort by Popularity Asc</button>
-                <button onClick={this.handleSortContactByPopDesc}>Sort by Popularity Desc</button>
+                {
+                    this.state.toggleName ?
+                        <button onClick={this.handleSortContactByName}>Sort by Name Asc</button> :
+                        <button onClick={this.handleSortContactByNameDesc}>Sort by Name Desc</button>
+                }
+                {
+                    this.state.togglePop ?
+                        <button onClick={this.handleSortContactByPop}>Sort by Popularity Asc</button> :
+                        <button onClick={this.handleSortContactByPopDesc}>Sort by Popularity Desc</button>
+                }
             </div>
             <table id="tbl">
                 <tr>
