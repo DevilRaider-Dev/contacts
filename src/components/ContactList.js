@@ -23,15 +23,27 @@ class ContactList extends React.Component {
         });
     }
     handleSortContactByName = () => {
-        //store array in new variable and sort it by name
+        //store array in new variable and sort it by name asc
         let tmp = [...this.state.data]
         tmp.sort((a, b) => (a.name < b.name) ? -1 : (b.name < a.name) ? 1 : 0)
         this.setState({ data: tmp });
     }
     handleSortContactByNameDesc = () => {
-        //store array in new variable and sort it by name
+        //store array in new variable and sort it by name desc
         let tmp = [...this.state.data]
         tmp.sort((a, b) => (a.name < b.name) ? 1 : (b.name < a.name) ? -1 : 0)
+        this.setState({ data: tmp });
+    }
+    handleSortContactByPop = () => {
+        //store array in new variable and sort it by name asc
+        let tmp = [...this.state.data]
+        tmp.sort((a, b) => (a.popularity < b.popularity) ? -1 : (b.popularity < a.popularity) ? 1 : 0)
+        this.setState({ data: tmp });
+    }
+    handleSortContactByPopDesc = () => {
+        //store array in new variable and sort it by name desc
+        let tmp = [...this.state.data]
+        tmp.sort((a, b) => (a.popularity < b.popularity) ? 1 : (b.popularity < a.popularity) ? -1 : 0)
         this.setState({ data: tmp });
     }
     handleRemoveContact = (name) => {
@@ -45,6 +57,8 @@ class ContactList extends React.Component {
                 <button onClick={this.handleAddRandomContact}>Add Random Contact</button>
                 <button onClick={this.handleSortContactByName}>Sort by Name Asc</button>
                 <button onClick={this.handleSortContactByNameDesc}>Sort by Name Desc</button>
+                <button onClick={this.handleSortContactByPop}>Sort by Popularity Asc</button>
+                <button onClick={this.handleSortContactByPopDesc}>Sort by Popularity Desc</button>
             </div>
             <table id="tbl">
                 <tr>
