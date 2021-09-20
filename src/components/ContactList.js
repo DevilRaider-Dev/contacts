@@ -73,19 +73,23 @@ class ContactList extends React.Component {
                 }
             </div>
             <table id="tbl">
-                <tr>
-                    <th>Picture</th>
-                    <th>Name</th>
-                    <th>Popolarity</th>
-                    <th>Action</th>
-                </tr>
-                {this.state.data.map((contact) =>
-                    <tr key={uuidv4()}>
-                        <td><img src={contact.pictureUrl} alt={contact.name}></img></td>
-                        <td>{contact.name}</td>
-                        <td>{contact.popularity}</td>
-                        <td><button onClick={() => this.handleRemoveContact(contact.name)}>Remove Contact</button></td>
-                    </tr>)}
+                <thead>
+                    <tr>
+                        <th>Picture</th>
+                        <th>Name</th>
+                        <th>Popolarity</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {this.state.data.map((contact) =>
+                        <tr key={uuidv4()}>
+                            <td><img src={contact.pictureUrl} alt={contact.name}></img></td>
+                            <td>{contact.name}</td>
+                            <td>{contact.popularity}</td>
+                            <td><button onClick={() => this.handleRemoveContact(contact.name)}>Remove Contact</button></td>
+                        </tr>)}
+                </tbody>
             </table>
         </div>;
     }
